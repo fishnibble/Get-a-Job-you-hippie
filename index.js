@@ -1,3 +1,5 @@
+// set up.....
+
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -9,6 +11,8 @@ const app = express();
 app.use(cors());
 
 app.use(morgan('tiny'));
+
+// functions
 
 function craigslistGet(body) {
   const $ = cheerio.load(body);
@@ -26,29 +30,48 @@ function craigslistGet(body) {
      });
   });
   return results;
-
 }
 
-function redditGet(body) {
-  // https://www.reddit.com/r/devopsjobs/search?q=node.js&restrict_sr=1
-  const $ = cheerio.load(body);
-  
-}
+// function cleanRedditJson(redditJson) {
+//   // try redditJson['childern'['data'['title']
+//   const hi = this.redditJson;
+//   console.log(hi);
+// }
+
+// routes
+
+// app.get('/reddit/:job', (request, response) => {
+//   const { job } = request.params;
+//   const url = `https://www.reddit.com/r/jobbit/search.json?q=${job}&restrict_sr=1`;
+//
+//   fetch(url)
+//       .then(response => response.json())
+//       .then(json => const results = json);
+//   console.log(results);
+// });
 
 
 app.get('/search/:location/:job', (request, response) => {
   const { location, job } = request.params;
 
-  const url = `https://${location}.craigslist.org/search/jjj?query=${job}`;
+  const cl = `https://${location}.craigslist.org/search/jjj?query=${job}`;
+  const reddit = `https://www.reddit.com/r/jobbit/search.json?q=${job}&restrict_sr=1`;
 
-  fetch(url)
-    .then(response => response.text())
-    .then(body => {
-      const results = craigslistGet(body);
-      response.json({
-        results
-      });
+  Promise.all([
+    fetch(cl)
+      .then(response => response.text()),
+    fetch(reddit)
+      .then(res => res.json())
+  ]).then(results => { // results is an array with the results of both fetch calls
+    const body = results[0];
+    const clJson = craigslistGet(body);
+
+    const redditJson = results[1];
+    response.json({
+      redditJson,
+      clJson
     });
+  });
 });
 
 // handling random url routes

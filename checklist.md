@@ -1,15 +1,18 @@
 * [X] get JSON response of jobs from CL
 
-* [] get JSON response of jobs from reddit
+* [X] get JSON response of jobs from reddit
+  - you can get a json file by doing:
+  https://www.reddit.com/r/subreddit/search.json?q=somthinghere%20js&restrict_sr=1
+  - [X] *NOTE*: Having issue pushing cl and reddit json all into one response. (fixed)
+  - [x] *NOTE* look into Promise.all().
+
+* [] parse data from reddit JSON too much info.
 
 * [X] searchable keywords
 
 * [] search multiple cities
   - *NOTE*: The front end can make multiple JSON queries and then append it
             to the search.
-
-* [] find a way to grab all of the reddit titles there class changes...
-  - *NOTE* asked about this on discord
 
 * [] see cost of living in that city
   - *NOTE*: https://github.com/noahpeden/webscraping
