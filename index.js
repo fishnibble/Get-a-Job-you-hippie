@@ -32,23 +32,8 @@ function craigslistGet(body) {
   return results;
 }
 
-// function cleanRedditJson(redditJson) {
-//   // try redditJson['childern'['data'['title']
-//   const hi = this.redditJson;
-//   console.log(hi);
-// }
 
 // routes
-
-// app.get('/reddit/:job', (request, response) => {
-//   const { job } = request.params;
-//   const url = `https://www.reddit.com/r/jobbit/search.json?q=${job}&restrict_sr=1`;
-//
-//   fetch(url)
-//       .then(response => response.json())
-//       .then(json => const results = json);
-//   console.log(results);
-// });
 
 
 app.get('/search/:location/:job', (request, response) => {
@@ -66,7 +51,12 @@ app.get('/search/:location/:job', (request, response) => {
     const body = results[0];
     const clJson = craigslistGet(body);
 
-    const redditJson = results[1];
+    const redditJson = results[1].data.children.map(({data}) => ({
+      title: data.title,
+      url: data.url
+    }));
+  
+
     response.json({
       redditJson,
       clJson

@@ -6,9 +6,12 @@
   - [X] *NOTE*: Having issue pushing cl and reddit json all into one response. (fixed)
   - [x] *NOTE* look into Promise.all().
 
-* [] parse data from reddit JSON too much info.
+* [X] parse data from reddit JSON too much info.
+  - *NOTE*: FIXED with maping (results[1].data.children.map...)
 
-* [X] searchable keywords
+* [KINDA] searchable keywords 
+  - Need to find a way to filter reddit posts. 
+  - might not be useful if they are too old.
 
 * [] search multiple cities
   - *NOTE*: The front end can make multiple JSON queries and then append it
