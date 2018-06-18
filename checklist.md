@@ -9,7 +9,7 @@
 * [X] parse data from reddit JSON too much info.
   - *NOTE*: FIXED with maping (results[1].data.children.map...)
 
-* [KINDA] searchable keywords 
+* [X] searchable keywords 
   - Need to find a way to filter reddit posts. 
   - might not be useful if they are too old.
 
@@ -18,6 +18,8 @@
 
 * [X] see cost of living in that city
   - [] clean the data
+
+* [] Start building out front end
 
 ---------------------------------------------------------------
 # Scrape list

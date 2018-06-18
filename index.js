@@ -73,7 +73,6 @@ app.get('/search/cl/:location/:job', (request, response) => {
     const clJson = craigslistGet(body);
 
     response.json({
-      redditJson,
       clJson
     });
   });
