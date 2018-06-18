@@ -14,10 +14,30 @@
   - might not be useful if they are too old.
 
 * [] search multiple cities
-  - *NOTE*: The front end can make multiple JSON queries and then append it
-            to the search.
+  - *NOTE*: The front end can make multiple JSON queries and then append it to the search.
 
 * [] see cost of living in that city
   - *NOTE*: https://github.com/noahpeden/webscraping
     https://www.numbeo.com/cost-of-living/ has data and info on cost of
     living!
+
+---------------------------------------------------------------
+# Scrape list
+---------------------------------------------------------------
+[] https://weworkremotely.com/categories/remote-programming-jobs
+
+[] https://jobspresso.co/
+
+[] https://remoteok.io/
+
+[] https://nofluffjobs.com/
+
+[] https://whoishiring.io/
+
+[] https://stackoverflow.com/jobs
+
+[] https://news.ycombinator.com/jobs
+
+[X] reddit
+
+[x] CL

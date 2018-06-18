@@ -32,37 +32,91 @@ function craigslistGet(body) {
   return results;
 }
 
+function numbeoGet(body) {
+  const results = [];
+  const $ = cheerio.load(body);
+  const table = $('table.data_wide_table tr');
+  
+  const meal = $(table[1]).text();
+  const cappuccino = $(table[6]).text();
+  
+  results.push({
+    meal,
+    cappuccino});
+
+  return results;
+
+}
+
 
 // routes
 
 
-app.get('/search/:location/:job', (request, response) => {
-  const { location, job } = request.params;
+// app.get('/search/:location/:job', (request, response) => {
+//   // todo refractor
+//   const { location, job } = request.params;
 
-  const cl = `https://${location}.craigslist.org/search/jjj?query=${job}`;
-  const reddit = `https://www.reddit.com/r/jobbit/search.json?q=${job}&restrict_sr=1`;
+//   const cl = `https://${location}.craigslist.org/search/jjj?query=${job}`;
+//   Promise.all([
+//     fetch(cl)
+//       .then(response => response.text()),
+//     fetch(reddit)
+//       .then(res => res.json())
+//   ]).then(results => { // results is an array with the results of both fetch calls
+//     const body = results[0];
+//     const clJson = craigslistGet(body);
 
-  Promise.all([
-    fetch(cl)
-      .then(response => response.text()),
-    fetch(reddit)
-      .then(res => res.json())
-  ]).then(results => { // results is an array with the results of both fetch calls
-    const body = results[0];
-    const clJson = craigslistGet(body);
-
-    const redditJson = results[1].data.children.map(({data}) => ({
-      title: data.title,
-      url: data.url
-    }));
+//     const redditJson = results[1].data.children.map(({data}) => ({
+//       title: data.title,
+//       url: data.url
+//     }));
   
 
-    response.json({
-      redditJson,
-      clJson
+//     response.json({
+//       redditJson,
+//       clJson
+//     });
+//   });
+// });
+
+// Route for reddit
+app.get('/search/reddit/:subreddit/:job', (request, response ) => {
+  const { subreddit, job } = request.params;
+  const reddit = `https://www.reddit.com/r/${subreddit}/search.json?q=${job}&restrict_sr=1`;
+
+  fetch(reddit)
+    .then(res => res.json())
+    .then(results => {
+      const body = results;
+      const redditJson = results.data.children.map(({data}) => ({
+        title: data.title,
+        url: data.url
+      }));
+
+      response.json({
+        redditJson
+      });
     });
-  });
 });
+
+app.get('/search/citydata/:city', (request, response) => {
+  const { city } = request.params;
+  const numbeo = `https://www.numbeo.com/cost-of-living/in/${city}`
+
+  fetch(numbeo)
+    .then(response => response.text())
+    .then(results => {
+  
+      
+      const body = results;
+      const numbeoJson = numbeoGet(body);
+    
+      response.json({
+        numbeoJson
+      });
+    });
+});
+
 
 // handling random url routes
 
