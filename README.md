@@ -13,8 +13,8 @@
   - Need to find a way to filter reddit posts. 
   - might not be useful if they are too old.
 
-* [] search multiple cities
-  - *NOTE*: The front end can make multiple JSON queries and then append it to the search.
+* [] search multiple cities 
+  - *NOTE*: The front end can make multiple JSON queries and then append it to the search. (will add to front end)
 
 * [X] see cost of living in that city
   - [] clean the data
@@ -24,20 +24,20 @@
 ---------------------------------------------------------------
 # Scrape list
 ---------------------------------------------------------------
-[] https://weworkremotely.com/categories/remote-programming-jobs
+* [] https://weworkremotely.com/categories/remote-programming-jobs
 
-[] https://jobspresso.co/
+* [] https://jobspresso.co/
 
-[] https://remoteok.io/
+* [] https://remoteok.io/
 
-[] https://nofluffjobs.com/
+* [] https://nofluffjobs.com/
 
-[] https://whoishiring.io/
+* [] https://whoishiring.io/
 
-[] https://stackoverflow.com/jobs
+* [] https://stackoverflow.com/jobs (IN PROGRESS)
 
-[] https://news.ycombinator.com/jobs
+* [] https://news.ycombinator.com/jobs
 
-[X] reddit
+* [X] reddit
 
-[x] CL
+* [x] CL
