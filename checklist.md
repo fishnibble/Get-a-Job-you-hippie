@@ -16,10 +16,8 @@
 * [] search multiple cities
   - *NOTE*: The front end can make multiple JSON queries and then append it to the search.
 
-* [] see cost of living in that city
-  - *NOTE*: https://github.com/noahpeden/webscraping
-    https://www.numbeo.com/cost-of-living/ has data and info on cost of
-    living!
+* [X] see cost of living in that city
+  - [] clean the data
 
 ---------------------------------------------------------------
 # Scrape list

@@ -14,6 +14,7 @@ app.use(morgan('tiny'));
 
 // functions
 
+// Parse criagslist and return JSON
 function craigslistGet(body) {
   const $ = cheerio.load(body);
   const rows = $('li.result-row');
@@ -32,6 +33,7 @@ function craigslistGet(body) {
   return results;
 }
 
+// Parse numbeo data and return JSON
 function numbeoGet(body) {
   const results = [];
   const $ = cheerio.load(body);
@@ -39,45 +41,43 @@ function numbeoGet(body) {
   
   const meal = $(table[1]).text();
   const cappuccino = $(table[6]).text();
+  const monthlyTransportationPass = $(table[31]).text();
+  const rent = [$(table[55]).text(),$(table[56]).text(),$(table[57]).text(),$(table[58]).text()];
   
   results.push({
+    rent,
+    monthlyTransportationPass,
     meal,
-    cappuccino});
+    cappuccino
+  });
 
   return results;
-
 }
 
+function cleanNumbeoData(data) {
+  // TODO
+}
 
 // routes
 
+app.get('/search/cl/:location/:job', (request, response) => {
 
-// app.get('/search/:location/:job', (request, response) => {
-//   // todo refractor
-//   const { location, job } = request.params;
+  const { location, job } = request.params;
 
-//   const cl = `https://${location}.craigslist.org/search/jjj?query=${job}`;
-//   Promise.all([
-//     fetch(cl)
-//       .then(response => response.text()),
-//     fetch(reddit)
-//       .then(res => res.json())
-//   ]).then(results => { // results is an array with the results of both fetch calls
-//     const body = results[0];
-//     const clJson = craigslistGet(body);
+  const cl = `https://${location}.craigslist.org/search/jjj?query=${job}`;
 
-//     const redditJson = results[1].data.children.map(({data}) => ({
-//       title: data.title,
-//       url: data.url
-//     }));
-  
+  fetch(cl)
+    .then(response => response.text())
+    .then(results => { 
+    const body = results;
+    const clJson = craigslistGet(body);
 
-//     response.json({
-//       redditJson,
-//       clJson
-//     });
-//   });
-// });
+    response.json({
+      redditJson,
+      clJson
+    });
+  });
+});
 
 // Route for reddit
 app.get('/search/reddit/:subreddit/:job', (request, response ) => {
