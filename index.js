@@ -58,6 +58,27 @@ function cleanNumbeoData(data) {
   // TODO
 }
 
+function stackOverGet(body) {
+  results = [];
+  const $ = cheerio.load(body);
+  const jobList = $('.listResults');
+  
+  jobList.each((index, element) => {
+    const result = $(element);
+    const title = result.find('.job-details__spaced').text();
+    const company = result.find('.fc-black-700').text();
+    const pay = result.find(".-salary.pr16").text();    
+    
+    results.push({
+      title,
+      company,
+      pay
+    });
+  });
+
+  return results;
+}
+
 // routes
 
 app.get('/search/cl/:location/:job', (request, response) => {
@@ -105,13 +126,28 @@ app.get('/search/citydata/:city', (request, response) => {
   fetch(numbeo)
     .then(response => response.text())
     .then(results => {
-  
-      
       const body = results;
       const numbeoJson = numbeoGet(body);
     
       response.json({
         numbeoJson
+      });
+    });
+});
+
+app.get('/search/overflow/:job/:city', (request, response) =>{
+
+  const { job, city } = request.params;
+  const overflow = `https://stackoverflow.com/jobs?sort=i&q=${job}&l=${city}&d=20&u=Miles`;
+
+  fetch(overflow)
+    .then(response => response.text())
+    .then(results => {
+      const body = results;
+      const overflowJson = stackOverGet(body);
+      
+      response.json({
+        overflowJson
       });
     });
 });
