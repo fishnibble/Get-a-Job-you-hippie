@@ -28,13 +28,13 @@
 
 * [] https://jobspresso.co/
 
-* [] https://remoteok.io/
+* [] https://remoteok.io/ (IN PROGRESS)
 
 * [] https://nofluffjobs.com/
 
 * [] https://whoishiring.io/
 
-* [] https://stackoverflow.com/jobs (IN PROGRESS)
+* [X] https://stackoverflow.com/jobs 
 
 * [] https://news.ycombinator.com/jobs
 
