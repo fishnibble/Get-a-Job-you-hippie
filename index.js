@@ -61,19 +61,27 @@ function cleanNumbeoData(data) {
 function stackOverGet(body) {
   results = [];
   const $ = cheerio.load(body);
-  const jobList = $('.listResults');
+  const jobList = $('.-item.-job');
+  const url = 'https://stackoverflow.com';
   
   jobList.each((index, element) => {
     const result = $(element);
     const title = result.find('.job-details__spaced').text();
     const company = result.find('.fc-black-700').text();
-    const pay = result.find(".-salary.pr16").text();    
-    
+    let pay = result.find('.-salary.pr16').text(); 
+    const jobUrl = url + result.find('.job-link').attr('href');
+
+    if(pay === "") {
+      pay = 'NA';
+    }
+
     results.push({
       title,
       company,
-      pay
+      pay,
+      jobUrl
     });
+
   });
 
   return results;
