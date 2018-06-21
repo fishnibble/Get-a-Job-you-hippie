@@ -35,7 +35,7 @@
 
 * [] https://jobspresso.co/
 
-* [] https://remoteok.io/ (IN PROGRESS)
+* [X] https://remoteok.io/ 
 
 * [] https://nofluffjobs.com/
 

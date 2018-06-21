@@ -87,6 +87,27 @@ function stackOverGet(body) {
   return results;
 }
 
+function remoteokGet(body) {
+  results = []; 
+  const $ = cheerio.load(body);
+  const joblist = $('.job');
+  const rem = 'https://remoteok.io'
+
+  joblist.each((index, element) => {
+    const result = $(element);
+    const title = result.find('[itemprop="title"]').text();
+    const company = result.find('[itemprop="name"]').text();
+    const link = rem + result.find('[itemprop="hiringOrganization"]').attr('href');
+    
+    results.push({
+      title,
+      company,
+      link
+    });
+  });
+  return results;
+}
+
 // routes
 
 app.get('/search/cl/:location/:job', (request, response) => {
@@ -159,6 +180,25 @@ app.get('/search/overflow/:job/:city', (request, response) =>{
       });
     });
 });
+
+app.get('/search/remo/:job', (request, response) => {
+  // https://remoteok.io/
+  const { job } = request.params;
+  const url =  `https://remoteok.io/remote-${job}-jobs`; 
+
+  fetch(url)
+    .then(response => response.text())
+    .then(results => {
+      const body = results;
+      const remoteokJson = remoteokGet(body);
+
+      response.json({
+        remoteokJson
+      });
+    });
+});
+
+
 
 
 // handling random url routes
