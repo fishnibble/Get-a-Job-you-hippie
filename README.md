@@ -22,7 +22,9 @@
 * [X] see cost of living in that city
   - [] clean the data
 
-* [] Start building out front end
+* [] Start building out front end *(in progress)*
+
+* [] Explore possible code rebase with puppeteer due to some pages being SPA
 
 ---------------------------------------------------------------
 ## Current working state. backend only.
