@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
 </head>
+
 <body>
-    <div id="app>
-        <div class="form-group">
-          <label for="keyword">Keyword</label>
-          <input type="text" name="" id="keyword" class="form-control" placeholder="Enter a Job title" aria-describedby="helpId">
-          <small id="helpId" class="text-muted">Help text</small>
-        </div>
-    </div>
-    <script src=:"https://unpkg.com/vue@2" charset="utf-8"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <main class="container" id="app">
+        <form @submit.prevent="addTerm">
+            <fieldset class="form-group">
+                <label for="term">Term</label>
+                <input v-model="term" type="text " class="form-control " id="term " placeholder="Enter a search term ">
+            </fieldset>
+            <button type="submit " class="btn btn-danger ">Add</button>
+        </form>
+    </main>
+
+    <script src="https://unpkg.com/vue@2" charset="utf-8"></script>
     <script src="client.js" charset="utf-8"></script>
 </body>
+
 </html>

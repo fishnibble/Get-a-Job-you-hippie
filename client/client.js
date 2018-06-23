@@ -1,7 +1,15 @@
 const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
-        keywords: []
+        term: '',
+        terms: []
+    },
+
+    methods: {
+        addTerm() {
+            this.terms.push(this.term)
+            console.log(this.terms);
+        }
     }
     
 });
