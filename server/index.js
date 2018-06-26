@@ -110,11 +110,11 @@ function remoteokGet(body) {
 
 // routes
 
-app.get('/search/cl/:location/:job', (request, response) => {
+app.get('/search/cl/:job/:city', (request, response) => {
 
-  const { location, job } = request.params;
+  const { city, job } = request.params;
 
-  const cl = `https://${location}.craigslist.org/search/jjj?query=${job}`;
+  const cl = `https://${city}.craigslist.org/search/jjj?query=${job}`;
 
   fetch(cl)
     .then(response => response.text())

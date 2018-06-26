@@ -19,10 +19,11 @@
     </nav>
 
     <main class="container" id="app">
-        <form @submit.prevent="addTerm">
+        <form @submit.prevent="handleSubmit">
             <fieldset class="form-group">
                 <label for="term">Term</label>
                 <input v-model="term" type="text " class="form-control " id="term " placeholder="Enter a search term ">
+                <input v-model="city" type="text " class="form-control " id="term " placeholder="Enter a city ">
             </fieldset>
             <button type="submit " class="btn btn-danger ">Add</button>
         </form>
