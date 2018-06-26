@@ -27,7 +27,7 @@
 * [] Explore possible code rebase with puppeteer due to some pages being SPA
 
 ---------------------------------------------------------------
-## Current working state. backend only.
+## Current working state. Backend[X] Frontend[10%]
 ---------------------------------------------------------------
 
 ---------------------------------------------------------------
