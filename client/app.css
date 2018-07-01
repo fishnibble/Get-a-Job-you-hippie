@@ -1,0 +1,13 @@
+.search {
+    width: 50%;
+    float: left;
+}
+
+.term {
+    padding: 20px 0px 20px 0px;
+}
+
+.card {
+    margin-top: 20px;
+    float: right;
+}

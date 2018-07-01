@@ -6,6 +6,7 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
@@ -19,16 +20,36 @@
     </nav>
 
     <main class="container" id="app">
-        <form @submit.prevent="handleSubmit">
-            <fieldset class="form-group">
-                <label for="term">Term</label>
-                <input v-model="term" type="text " class="form-control " id="term " placeholder="Enter a search term ">
-                <input v-model="city" type="text " class="form-control " id="term " placeholder="Enter a city ">
-            </fieldset>
-            <button type="submit " class="btn btn-danger ">Add</button>
-        </form>
-    </main>
+        <div class="search">
+            <form @submit.prevent="handleSubmit">
+                <fieldset class="form-group">
+                    <div class="term">
+                        <input v-model="term" type="text " class="form-control " id="term " placeholder="Enter a search term ">
+                    </div>
+                    <div class="city">
+                        <input v-model="city" type="text " class="form-control " id="term " placeholder="Enter a city ">
+                    </div>
 
+
+                </fieldset>
+                <button type="submit " class="btn btn-danger ">Add</button>
+            </form>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">City Data: {{city}}</h5>
+                <p v-if="typeof cityData !== undefined">Meal Cost: {{cityData.meal}}</p>
+                <br>
+                <p v-if="typeof cityData !== undefined">Transpertaion Cost: {{cityData.monthlyTransportationPass}}</p>
+            </div>
+        </div>
+
+        <div v-if>
+            
+        </div>
+
+    </main>
     <script src="https://unpkg.com/vue@2" charset="utf-8"></script>
     <script src="client.js" charset="utf-8"></script>
 </body>
