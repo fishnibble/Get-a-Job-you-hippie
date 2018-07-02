@@ -45,8 +45,20 @@
             </div>
         </div>
 
-        <div v-if>
-            
+        <div class="card jobs col-lg" v-if="jobs !== undefined" v-for="jobListing in jobs.clJson">
+            <h5 class="card-header">{{jobListing.title}}</h5>
+            <div class="card-body">
+                <a v-bind:href="jobListing.url" class="btn btn-primary">Job Posting</a>
+            </div>
+        </div>
+
+        <div class="card jobs col-lg" v-if="jobs !== undefined" v-for="jobListing in jobs.overflowJson">
+            <h5 class="card-header">{{jobListing.title}}</h5>
+            <div class="card-body">
+                <p>Company: {{jobListing.company}}</p>
+                <p>Pay: {{jobListing.pay}}</p>
+                <a v-bind:href="jobListing.jobUrl" class="btn btn-primary">Job Posting</a>
+            </div>
         </div>
 
     </main>

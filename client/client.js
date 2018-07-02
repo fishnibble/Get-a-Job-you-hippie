@@ -51,10 +51,10 @@ const app = new Vue({
                 const datar2 = results[1];
                 this.cityData = results[2].numbeoJson[0];
                 this.jobs = Object.assign(datar1,datar2);
-
+                console.log(this.jobs.clJson[1].title)
             });
 
-            // console.log(this.jobs, this.cityData);
+           
             
         }
         
