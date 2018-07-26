@@ -38,11 +38,14 @@ function numbeoGet(body) {
   const results = [];
   const $ = cheerio.load(body);
   const table = $('table.data_wide_table tr');
-  
-  const meal = $(table[1]).text();
-  const cappuccino = $(table[6]).text();
-  const monthlyTransportationPass = $(table[31]).text();
-  const rent = [$(table[55]).text(),$(table[56]).text(),$(table[57]).text(),$(table[58]).text()];
+  // Clean up the gross data
+  const meal = $(table[1]).text().replace(/\$[\s\S]*$/, "");
+  const cappuccino = $(table[6]).text().replace(/\$[\s\S]*$/, "");
+  const monthlyTransportationPass = $(table[31]).text().replace(/\$[\s\S]*$/, "");
+  const rent = [$(table[55]).text().replace(/\$[\s\S]*$/, "")
+    ,$(table[56]).text().replace(/\$[\s\S]*$/, "")
+    ,$(table[57]).text().replace(/\$[\s\S]*$/, "")
+    ,$(table[58]).text().replace(/\$[\s\S]*$/, "")];
   
   results.push({
     rent,
@@ -54,9 +57,6 @@ function numbeoGet(body) {
   return results;
 }
 
-function cleanNumbeoData(data) {
-  // TODO
-}
 
 function stackOverGet(body) {
   results = [];

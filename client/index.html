@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
@@ -39,9 +38,16 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">City Data: {{city}}</h5>
-                <p v-if="typeof cityData !== undefined">Meal Cost: {{cityData.meal}}</p>
+
+                <p v-for="rent in cityData.rent">
+                    {{rent}}
+                </p>
+
+                <p v-if="typeof cityData !== undefined">{{cityData.meal}}</p>
+
                 <br>
-                <p v-if="typeof cityData !== undefined">Transpertaion Cost: {{cityData.monthlyTransportationPass}}</p>
+
+                <p v-if="typeof cityData !== undefined">{{cityData.monthlyTransportationPass}}</p>
             </div>
         </div>
 
@@ -49,6 +55,7 @@
             <h5 class="card-header">{{jobListing.title}}</h5>
             <div class="card-body">
                 <a v-bind:href="jobListing.url" class="btn btn-primary">Job Posting</a>
+                <button class="btn btn-primary" v-on:click=addJobs(jobListing)>Add job</button>
             </div>
         </div>
 

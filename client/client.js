@@ -11,7 +11,8 @@ const app = new Vue({
         city: '',
         term: '',
         jobs: [],
-        cityData: []
+        cityData: [],
+        selectedJobs: []
     },
 
     methods: {
@@ -22,22 +23,6 @@ const app = new Vue({
             const cityUrl = CITY_API + this.city;
             console.log(cityUrl);
             console.log(jobUrl);
-            
-            
-            // grabContent = url => fetch(url)
-            //     .then(res => res.json())
-            //     .then(results => {
-            //        this.jobs.push(results);
-            //     });
-
-            // Promise
-            //     .all(url.map(grabContent))
-            //     .then(fetch(CITY_API + this.city))
-            //     .then(res => res.json())
-            //     .then(results => {
-            //         this.cityData.push(results)
-            //     })
-            //     .then(console.log(this.cityData, this.jobs));
             
             Promise.all([
                 fetch(jobUrl[0])
@@ -53,9 +38,11 @@ const app = new Vue({
                 this.jobs = Object.assign(datar1,datar2);
                 console.log(this.jobs.clJson[1].title)
             });
-
-           
             
+        },
+
+        addJobs(job) {
+            this.selectedJobs.push(job);
         }
         
     }
