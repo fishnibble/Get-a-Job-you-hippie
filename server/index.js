@@ -5,8 +5,13 @@ const cors = require('cors');
 const morgan = require('morgan');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const bodyParser = require('body-parser');
+
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
@@ -194,10 +199,13 @@ app.get('/search/remo/:job', (request, response) => {
 
       response.json({
         remoteokJson
-      });
+      })
     });
 });
 
+app.post('/makecsv', (res, response) => {
+  console.log(JSON.stringify(res.body));
+});
 
 
 
