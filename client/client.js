@@ -64,4 +64,5 @@ const app = new Vue({
                         });
 
                 }
-            });
+            }
+        });

@@ -6,7 +6,8 @@ const morgan = require('morgan');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const bodyParser = require('body-parser');
-
+const Json2csvParser = require('json2csv').Parser;
+const HEADER = ["Title", "URL"];
 
 const app = express();
 
@@ -204,6 +205,13 @@ app.get('/search/remo/:job', (request, response) => {
 });
 
 app.post('/makecsv', (res, response) => {
+  try {
+    const parser = new Json2csvParser({HEADER});
+    const csv = parser.parse(res.body);
+    console.log(csv);
+  } catch (err) {
+    console.error(err);
+  }
   console.log(JSON.stringify(res.body));
 });
 
